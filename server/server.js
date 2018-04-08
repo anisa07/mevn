@@ -1,4 +1,5 @@
 /* eslint-disable indent,no-tabs */
+const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -46,6 +47,24 @@ app.delete('/home/:id', (req, res) => {
 	);
 });
 
+app.patch('/home/:id', (req, res) => {
+	const id = req.params.id;
+	const body = _.pick(req.body, ['text']);
+
+	if (!ObjectID.isValid(id)){
+		return res.status(404).send(e);
+	}
+
+	Home.findByIdAndUpdate(id, {$set: body}, {new: true})
+		.then(data => {
+			if (!data) {
+				res.status(404).send();
+			}
+			res.send({data});
+		}).catch(e => {
+			res.status(400).send();
+	});
+});
 
 app.listen(port, () => {
 });
