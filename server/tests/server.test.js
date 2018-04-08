@@ -1,4 +1,4 @@
-/* eslint-disable semi,no-mixed-spaces-and-tabs */
+/* eslint-disable semi,no-mixed-spaces-and-tabs,no-undef,no-tabs,no-unused-vars,consistent-return */
 const expect = require('expect');
 const request = require('supertest');
 
@@ -6,38 +6,37 @@ const { app } = require('./../server');
 const { Home } = require('./../models/home');
 
 const homeTest = [{
-	text: 'First test'
+	text: 'First test',
 }, {
-	text: 'Second test'
+	text: 'Second test',
 }];
 
 beforeEach((done) => {
 	Home.remove({})
 		.then(() => Home.insertMany(homeTest))
-		.then(() => {done()})
+		.then(() => { done() })
 });
 
 describe('POST /home', () => {
-  it('should create a new text', (done) => {
-    const text = 'test';
-    request(app)
-      .post('/home')
-      .send({ text })
-      .expect(200)
-	    .expect((res) => {
-		    expect(res.body.text).toBe(text);
-	    })
-	    .end((err, res) => {
-	    	if (err)
-	    		return done(err);
+	it('should create a new text', (done) => {
+		const text = 'test';
+		request(app)
+			.post('/home')
+			.send({ text })
+			.expect(200)
+			.expect((res) => {
+				expect(res.body.text).toBe(text);
+			})
+			.end((err, res) => {
+				if (err) { return done(err); }
 
-		    Home.find().then((todos) => {
-			    expect(todos.length).toBe(3);
-			    expect(todos[2].text).toEqual(text);
-			    done();
-		    }).catch((e) => done(e));
-	    })
-  });
+				Home.find().then((todos) => {
+					expect(todos.length).toBe(3);
+					expect(todos[2].text).toEqual(text);
+					done();
+				}).catch(e => done(e));
+			})
+	});
 });
 
 describe('GET /home', () => {
