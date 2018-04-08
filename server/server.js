@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 // eslint-disable-next-line no-unused-vars
 const mongoose = require('./db/mongoose');
+const {ObjectID} = require('mongodb');
 const { Home } = require('./models/home');
 
 const app = express();
@@ -28,6 +29,23 @@ app.get('/home', (req, res) => {
 		res.status(400).send(e);
 	}
 });
+
+app.delete('/home/:id', (req, res) => {
+	const id = req.params.id;
+	if (!ObjectID.isValid(id)){
+		return res.status(404).send(e);
+	}
+	Home.findByIdAndRemove(id).then((data) => {
+		if (!data) {
+			res.send(data);
+		} else {
+			res.status(400).send(e);
+		}
+	}).catch(e =>
+		res.status(400).send(e)
+	);
+});
+
 
 app.listen(port, () => {
 });
