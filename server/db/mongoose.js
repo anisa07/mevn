@@ -5,4 +5,4 @@ const dbUrl = 'mongodb://localhost:27017/dbPPB';
 mongoose.Promise = Promise;
 mongoose.connect(dbUrl);
 
-export { mongoose };
+module.exports = { mongoose };
