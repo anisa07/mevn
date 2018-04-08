@@ -7,6 +7,7 @@ const mongoose = require('./db/mongoose');
 const { Home } = require('./models/home');
 
 const app = express();
+const port = process.env.PORT || 3001;
 app.use(bodyParser.json());
 
 app.post('/home', (req, res) => {
@@ -28,7 +29,7 @@ app.get('/home', (req, res) => {
 	}
 });
 
-app.listen(3001, () => {
+app.listen(port, () => {
 });
 
 module.exports = { app };
