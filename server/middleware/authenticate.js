@@ -1,4 +1,3 @@
-/* eslint-disable no-tabs */
 const { User } = require('../models/user');
 
 const authenticate = (req, res, next) => {
