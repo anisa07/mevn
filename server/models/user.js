@@ -43,7 +43,7 @@ UserSchema.methods.toJSON = function () {
 UserSchema.methods.generateAuthToken = function () {
 	const user = this;
 	const access = 'auth';
-	const token = jwt.sign({ _id: user._id.toHexString(), access }, 'qwerty123').toString();
+	const token = jwt.sign({ _id: user._id.toHexString(), access }, process.env.JWT_key).toString();
 	user.tokens.push({
 		access,
 		token,
@@ -51,12 +51,23 @@ UserSchema.methods.generateAuthToken = function () {
 	return user.save().then(() => token);
 };
 
+UserSchema.methods.removeToken = function (token) {
+	const user = this;
+	return user.update({
+		$pull: {
+			tokens: {
+				token,
+			},
+		},
+	});
+};
+
 UserSchema.statics.findByToken = function (token) {
 	const User = this;
 	let decoded;
 
 	try {
-		decoded = jwt.verify(token, 'qwerty123');
+		decoded = jwt.verify(token, process.env.JWT_key);
 	} catch (e) {
 		return Promise.reject();
 	}

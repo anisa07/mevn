@@ -1,5 +1,6 @@
 /* eslint-disable indent,no-tabs,no-unused-expressions,
 no-sequences,consistent-return,prefer-destructuring */
+require('./config/config');
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -7,15 +8,16 @@ const bodyParser = require('body-parser');
 // eslint-disable-next-line no-unused-vars
 const mongoose = require('./db/mongoose');
 const { ObjectID } = require('mongodb');
+
 const { Home } = require('./models/home');
-const { User } = require('./models/user');
 const { authenticate } = require('./middleware/authenticate');
 
 const app = express();
 const port = process.env.PORT || 3001;
 app.use(bodyParser.json());
+app.use('/users', require('./routes/user.routes'));
 
-app.post('/home', (req, res) => {
+app.post('/home', authenticate, (req, res) => {
 	const home = new Home({
 		text: req.body.text,
 	});
@@ -34,7 +36,7 @@ app.get('/home', (req, res) => {
 	};
 });
 
-app.delete('/home/:id', (req, res) => {
+app.delete('/home/:id', authenticate, (req, res) => {
 	const id = req.params.id;
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
@@ -49,7 +51,7 @@ app.delete('/home/:id', (req, res) => {
 		res.status(400).send(e));
 });
 
-app.patch('/home/:id', (req, res) => {
+app.patch('/home/:id', authenticate, (req, res) => {
 	const id = req.params.id;
 	const body = _.pick(req.body, ['text']);
 
@@ -57,38 +59,13 @@ app.patch('/home/:id', (req, res) => {
 		return res.status(404).send(e);
 	}
 
-	Home.findByIdAndUpdate(id, { $set: body }, { new: true })
+	Home.findByIdAndUpdate(id, {$set: body}, {new: true})
 		.then((data) => {
 			if (!data) {
 				res.status(404).send();
 			}
 			res.send({ data });
 		}).catch((e) => {
-			res.status(400).send(e);
-	});
-});
-
-app.post('/users', (req, res) => {
-	const body = _.pick(req.body, ['email', 'password']);
-	const user = new User(body);
-	user.save().then(() => user.generateAuthToken())
-		.then((token) => {
-		res.header('x-auth', token).send(user);
-	})
-		.catch(e => res.status(400).send(e));
-});
-
-app.get('/users/me', authenticate, (req, res) => {
-	res.send(req.user);
-});
-
-app.post('/users/login', (req, res) => {
-	const body = _.pick(req.body, ['email', 'password']);
-	User.findByCredentials(body.email, body.password).then((user) => {
-		user.generateAuthToken().then((token) => {
-			res.header('x-auth', token).send(user);
-		});
-	}).catch((e) => {
 		res.status(400).send(e);
 	});
 });
