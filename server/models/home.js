@@ -8,6 +8,10 @@ const Home = mongoose.model('Home', {
 		minlength: 1,
 		trim: true,
 	},
+	_creator: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+	},
 });
 
 module.exports = { Home };

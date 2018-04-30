@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions,prefer-destructuring,consistent-return,indent */
+/* eslint-disable no-unused-expressions,prefer-destructuring,consistent-return,indent,no-underscore-dangle */
 const express = require('express');
 const _ = require('lodash');
 const { ObjectID } = require('mongodb');
@@ -34,7 +34,10 @@ pageRouter.post('/*', authenticate, (req, res) => {
 	const url = findUrl(req.originalUrl);
 	if (url) {
 		const Model = Pages[url];
-		const model = new Model(req.body);
+		const model = new Model({
+			text: req.body.text,
+			_creator: req.user._id,
+		});
 		model.save().then((doc) => {
 			res.send(doc);
 		}, (e) => {
@@ -53,7 +56,7 @@ pageRouter.delete('/*/:id', authenticate, (req, res) => {
 		if (!ObjectID.isValid(id)) {
 			return res.status(404).send();
 		}
-		Model.findByIdAndRemove(id).then((data) => {
+		Model.findOneAndRemove({ _id: id, _creator: req.user._id }).then((data) => {
 			if (!data) {
 				res.status(404).send(data);
 			}
@@ -76,7 +79,7 @@ pageRouter.patch('/*/:id', authenticate, (req, res) => {
 			return res.status(404).send();
 		}
 
-		Model.findByIdAndUpdate(id, { $set: body }, { new: true })
+		Model.findOneAndUpdate({ _id: id, _creator: req.user._id }, { $set: body }, { new: true })
 			.then((data) => {
 				if (!data) {
 					res.status(404).send();
