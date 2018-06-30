@@ -1,0 +1,83 @@
+@import "../variables.scss";
+
+.homeContainer {
+  position: relative;
+  background: url('../../images/main4.jpg') no-repeat top;
+  &.laptop, &.desktop {
+    height: 800px;
+  }
+  &.tablet, &.mobile {
+    height: 500px;
+  }
+}
+
+.copyTitle {
+  color: white;
+}
+
+.emf {
+  //text-decoration: underline;
+  &.laptop, &.desktop {
+    font-size: 3.5rem;
+  }
+  &.tablet, &.mobile {
+    font-size: 2.5rem;
+  }
+}
+
+.roundImg {
+  border-radius: 50%;
+}
+
+.homeTitle {
+  font-family: $special_font;
+  color: $home-color;
+  text-transform: capitalize;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  &.laptop, &.desktop {
+    top: 15%;
+    font-size: 2.5rem;
+    //left: 15%;
+  }
+  &.tablet, &.mobile {
+    top: 10%;
+    font-size: 1.5rem;
+    //left: 10%;
+    text-align: center;
+  }
+}
+
+.homeSubtitle {
+  position: absolute;
+  color: $home-color;
+  text-align: center;
+  &.laptop, &.desktop {
+    width: 60%;
+    left: 20%;
+    top: 35%;
+    font-size: 2rem;
+  }
+  &.tablet {
+    font-size: 1.25rem;
+    width: 80%;
+    left: 15%;
+    top: 30%;
+  }
+  &.mobile {
+    display: none;
+  }
+}
+
+.homeContacts {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  &.laptop, &.desktop {
+    top: 80%;
+  }
+  &.tablet, &.mobile {
+    top: 80%;
+  }
+}

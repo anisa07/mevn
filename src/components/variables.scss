@@ -1,0 +1,25 @@
+// imports
+@import url('https://fonts.googleapis.com/css?family=Muli|Poppins');
+
+// fonts
+$common-font: 'Muli', sans-serif;
+$special_font: 'Poppins', sans-serif;
+
+// sizes
+
+
+// colors
+$home-color: #EDE7F6;
+$letter-color: #673AB7;
+$light-color: #ffffff;
+
+.section_title {
+  font-family: $special_font;
+  font-size: 2em;
+  text-align: center;
+  margin: 20px;
+}
+
+body {
+  font-family: $common-font;
+}

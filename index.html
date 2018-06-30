@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- use triple mustache for non-HTML-escaped interpolation -->
+    {{{ meta }}}
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <!-- use double mustache for HTML-escaped interpolation -->
+    <title>{{ title }}</title>
+</head>
+<body>
+<!--vue-ssr-outlet-->
+<script src="dist/build.js"></script>
+</body>
+</html>

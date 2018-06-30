@@ -24,4 +24,4 @@ app.use('/pages', require('./routes/pages.routes'));
 app.listen(port, () => {
 });
 
-module.exports = { app };
+// module.exports = { app };

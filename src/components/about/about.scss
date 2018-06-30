@@ -1,0 +1,97 @@
+@import "../variables.scss";
+
+.aboutContainer {
+  position: relative;
+  height: 1000px;
+  &.laptop, &.desktop {
+    padding: 20px 10%;
+  }
+  &.tablet, &.mobile {
+    padding: 20px 5%;
+  }
+}
+
+.bg-half {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.contentContainer {
+  position: absolute;
+  top: 50px;
+  width: 80%;
+  height: 900px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 3px solid #673AB7;
+}
+
+.aboutTitle {
+}
+
+.aboutContent {
+  //margin-top: 50px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  display: grid;
+  grid-gap: 10px;
+  justify-items: start;
+  align-items: center;
+}
+
+//.imageContainer {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//}
+//
+//.label {
+//  width: 100px;
+//  text-align: center;
+//}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.item {
+  padding: 5px 10px;
+  min-height: 147px;
+}
+
+.itemImg {
+  width: 50px;
+  padding-right: 5px;
+  border-right: 2px solid #673AB7;
+}
+.itemTitle {
+  font-size: 1.25em;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-left: 10px;
+}
+.itemText {
+  position: relative;
+  cursor: pointer;
+  text-align: justify;
+}
+
+.itemText:hover {}
+
+.itemText:hover::after {
+  position: absolute;
+  content: "Click text to see next";
+  color: white;
+  background: #673AB7;
+  opacity: 0.8;
+  top: 35%;
+  left: 25%;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
