@@ -11,21 +11,21 @@ export default {
 	// get about
 	// get experience
 	getPersonalExperienceAsync () {
-		return AxiosClient.get('/pages/experience-personal').then(results =>
+		return AxiosClient.get('/pages/experience-personal', config).then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetPersonalExperienceError', e);
 			});
 	},
 	getCompanyExperienceAsync () {
-		return AxiosClient.get('/pages/experience-company').then(results =>
+		return AxiosClient.get('/pages/experience-company', config).then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetCompanyExperienceError', e);
 			});
 	},
 	getSkillsAsync () {
-		return AxiosClient.get('/pages/skills').then(results =>
+		return AxiosClient.get('/pages/skills', config).then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetSkillsError', e);
@@ -39,14 +39,14 @@ export default {
 			});
 	},
 	getProjectsAsync () {
-		return AxiosClient.get('/pages/projects').then(results =>
+		return AxiosClient.get('/pages/projects', config).then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetProjectsError', e);
 			});
 	},
 	getAwardsAsync () {
-		return AxiosClient.get('/pages/awards').then(results =>
+		return AxiosClient.get('/pages/awards', config).then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetAwardsError', e);
