@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
 const env = process.env.NODE_ENV || 'development';
-
 if (env === 'development' || env === 'test') {
 	const config = require('./config.json');
 	const envConfig = config[env];

@@ -1,46 +1,51 @@
 // import Vue from 'vue';
 import AxiosClient from './httpClient';
 
+const config = {
+	headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET',
+		'Access-Control-Allow-Headers': 'X-Requested-With'}
+};
+
 export default {
 	// get home
 	// get about
 	// get experience
-	getPersonalExperienceAsync() {
+	getPersonalExperienceAsync () {
 		return AxiosClient.get('/pages/experience-personal').then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetPersonalExperienceError', e);
 			});
 	},
-	getCompanyExperienceAsync() {
+	getCompanyExperienceAsync () {
 		return AxiosClient.get('/pages/experience-company').then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetCompanyExperienceError', e);
 			});
 	},
-	getSkillsAsync() {
+	getSkillsAsync () {
 		return AxiosClient.get('/pages/skills').then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetSkillsError', e);
 			});
 	},
-	getAboutMeAsync() {
-		return AxiosClient.get('/pages/about-me').then(results =>
+	getAboutMeAsync () {
+		return AxiosClient.get('/pages/about-me', config).then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetSkillsError', e);
 			});
 	},
-	getProjectsAsync() {
+	getProjectsAsync () {
 		return AxiosClient.get('/pages/projects').then(results =>
 			results.data)
 			.catch((e) => {
 				console.error('GetProjectsError', e);
 			});
 	},
-	getAwardsAsync() {
+	getAwardsAsync () {
 		return AxiosClient.get('/pages/awards').then(results =>
 			results.data)
 			.catch((e) => {
