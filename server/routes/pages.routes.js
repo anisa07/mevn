@@ -3,7 +3,6 @@ prefer-destructuring,consistent-return,indent,no-underscore-dangle */
 const express = require('express');
 const _ = require('lodash');
 const { ObjectID } = require('mongodb');
-
 const { Home } = require('../models/home');
 const { Awards } = require('../models/awards');
 const { AboutMe } = require('../models/aboutme');

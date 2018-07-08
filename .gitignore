@@ -18,5 +18,6 @@ npm-debug.log*
 package-lock.json
 /server/config/config.json
 /data
+/usr
 Dockerfile
 docker-compose.yml

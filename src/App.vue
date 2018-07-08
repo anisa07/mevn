@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <div id="app">
+        <div id="app" data-server-rendered="true">
             <!--<a @click="moveTo('about')">About</a>-->
             <!--<a @click="moveTo('exp')">Experience</a>-->
             <!--<a @click="moveTo('projects')">Projects</a>-->

@@ -1,11 +1,12 @@
 @import "../variables.scss";
 
 .expContainer {
-  height: 1200px;
-  overflow: hidden;
   position: relative;
   padding: 20px 10%;
   background: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
 }
 
 .expTitle {
@@ -13,7 +14,7 @@
 }
 
 .tab3 {
-  position: absolute;
+  //position: absolute;
   z-index: 99;
   width: 80%;
   height: 100%;
@@ -21,5 +22,8 @@
 
 
 .skills {
-  margin-top: 40px;
+  position: absolute;
+  top: 140px;
+  width: 65%;
+  left: 10%;
 }

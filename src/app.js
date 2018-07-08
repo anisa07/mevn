@@ -28,9 +28,9 @@ if (process.browser) {
 		},
 	});
 
-	console.log('browser');
+	//console.log('browser');
 } else {
-	console.log('server');
+	//console.log('server');
 }
 
 // экспортируем функцию фабрику для создания экземпляров
