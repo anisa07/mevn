@@ -19,5 +19,6 @@ package-lock.json
 /server/config/config.json
 /data
 /usr
+/ssl
 Dockerfile
 docker-compose.yml

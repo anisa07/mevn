@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.config');
+const VueSSRPlugin = require('vue-ssr-webpack-plugin')
 
 const webpackConfig = merge(baseWebpackConfig, {
 	target: 'node',
@@ -20,6 +21,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 		minimize: true,
 	},
 	plugins: [
+		new VueSSRPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': 'production',
 		}),

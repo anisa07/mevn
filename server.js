@@ -1,6 +1,7 @@
 /* eslint-disable no-multi-spaces,import/no-unresolved,prefer-arrow-callback */
 // server.js
 const express = require('express');
+// const https = require('https');
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
 
@@ -55,8 +56,19 @@ server.get('*', (req, res) => {
 	});
 });
 
+// const port = 3443;
 const port = process.env.PORT || 3001;
+
+// const httpsOptions = {
+// 	cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
+// 	key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')),
+// };
+
+// https.createServer(httpsOptions, server).listen(port);
+
 server.listen(port);
 
 /* eslint-disable indent,no-tabs,no-unused-expressions,
 no-sequences,consistent-return,prefer-destructuring */
+
+
